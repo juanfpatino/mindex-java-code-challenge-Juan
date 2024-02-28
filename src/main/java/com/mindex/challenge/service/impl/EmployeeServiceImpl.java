@@ -2,6 +2,7 @@ package com.mindex.challenge.service.impl;
 
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Employee;
+import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,5 +46,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         LOG.debug("Updating employee [{}]", employee);
 
         return employeeRepository.save(employee);
+    }
+
+    @Override
+    public ReportingStructure getReportingStructure(String employeeId) {
+        LOG.debug("Setting ReportingStructure with Employee [{}]", employeeId);
+
+        ReportingStructure rs = new ReportingStructure();
+
+        Employee employee = employeeRepository.findByEmployeeId(employeeId);
+
+        if (employee == null) {
+            throw new RuntimeException("Invalid employee: " + employeeId);
+        }
+
+        rs.setEmployee(employee);
+        rs.getNumberOfReports(); // update number of reports
+        return rs;
     }
 }

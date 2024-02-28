@@ -8,7 +8,6 @@ public class ReportingStructure {
 
     private Employee employee;
     private Integer numberOfReports;
-    private String id;
 
     /**
      * Constructor
@@ -48,14 +47,5 @@ public class ReportingStructure {
         return subReports + directReports;
 
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
 
 }
