@@ -33,6 +33,11 @@ public class ReportingStructure {
 
     }
 
+    /**
+     * Recursive method to count the number of reports
+     * @param employee Employee
+     * @return number of reports
+     */
     public int getNumberOfReports(Employee employee) {
 
         if(employee == null || employee.getDirectReports() == null)

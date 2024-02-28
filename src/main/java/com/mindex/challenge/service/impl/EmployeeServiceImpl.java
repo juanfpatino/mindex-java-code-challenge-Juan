@@ -48,6 +48,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    /**
+     * This method is used to get the reporting structure of an employee
+     * @param employeeId ID of the employee
+     * @return ReportingStructure object
+     */
     @Override
     public ReportingStructure getReportingStructure(String employeeId) {
         LOG.debug("Setting ReportingStructure with Employee [{}]", employeeId);

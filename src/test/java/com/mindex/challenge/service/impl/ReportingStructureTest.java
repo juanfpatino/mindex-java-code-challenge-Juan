@@ -26,6 +26,10 @@ public class ReportingStructureTest {
     static final Employee pete = new Employee();
     static final Employee george = new Employee();
     static final ReportingStructure r = new ReportingStructure();
+    static final ReportingStructure r1 = new ReportingStructure();
+    static final ReportingStructure r2 = new ReportingStructure();
+    static final ReportingStructure r3 = new ReportingStructure();
+
 
     @BeforeClass
     public static void setUp() {
@@ -69,7 +73,6 @@ public class ReportingStructureTest {
     @Test
     public void testZero(){
         Employee e = new Employee();
-        ReportingStructure r1 = new ReportingStructure();
         r1.setEmployee(e);
         assertEquals(0, r1.getNumberOfReports());
     }
@@ -81,7 +84,6 @@ public class ReportingStructureTest {
     public void testOne(){
         Employee e = new Employee();
         e.setDirectReports(Arrays.asList(new Employee[]{new Employee()}));
-        ReportingStructure r2 = new ReportingStructure();
         r2.setEmployee(e);
         assertEquals(1, r2.getNumberOfReports());
     }
@@ -91,7 +93,6 @@ public class ReportingStructureTest {
      */
     @Test
     public void testEmpty(){
-        ReportingStructure r3 = new ReportingStructure();
         assertEquals(0, r3.getNumberOfReports());
     }
 
