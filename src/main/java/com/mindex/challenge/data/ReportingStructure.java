@@ -29,13 +29,23 @@ public class ReportingStructure {
     // DFS to count the number of reports
     public int getNumberOfReports() {
         if(numberOfReports == null){
-            return getNumberOfReports(this.employee);
+            numberOfReports = getNumberOfReports(this.employee, 0);
         }
         return numberOfReports;
     }
 
-    public int getNumberOfReports(Employee employee) {
-        return numberOfReports;
+    public int getNumberOfReports(Employee employee, int reports) {
+
+        if(employee.getDirectReports().isEmpty()){ // base case - no reports left
+            return reports;
+        }
+        //otherwise
+        for(Employee e : employee.getDirectReports()){
+            reports += getNumberOfReports(e, reports);
+        }
+
+        return reports;
+
     }
 
     public String getRsId() {
