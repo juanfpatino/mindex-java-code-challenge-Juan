@@ -21,7 +21,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
     public ReportingStructure create(ReportingStructure reportingStructure) {
         LOG.debug("Creating employee [{}]", reportingStructure);
 
-        reportingStructure.setRsId(UUID.randomUUID().toString());
+        reportingStructure.setId(UUID.randomUUID().toString());
         reportingStructureRepository.insert(reportingStructure);
 
         return reportingStructure;
@@ -40,10 +40,5 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
         return rs;
     }
 
-    @Override
-    public ReportingStructure update(ReportingStructure employee) {
-        LOG.debug("Updating employee [{}]", employee);
 
-        return reportingStructureRepository.save(employee);
-    }
 }

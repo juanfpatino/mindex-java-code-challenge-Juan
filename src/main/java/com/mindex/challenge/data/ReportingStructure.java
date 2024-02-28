@@ -8,7 +8,7 @@ public class ReportingStructure {
 
     private Employee employee;
     private Integer numberOfReports;
-    private String rsId;
+    private String id;
 
     /**
      * Constructor
@@ -48,12 +48,12 @@ public class ReportingStructure {
 
     }
 
-    public String getRsId() {
-        return rsId;
+    public String getId() {
+        return id;
     }
 
-    public void setRsId(String rsId) {
-        this.rsId = rsId;
+    public void setId(String id) {
+        this.id = id;
     }
 
 
