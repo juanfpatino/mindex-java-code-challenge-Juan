@@ -15,25 +15,18 @@ public class ReportingStructureController {
     @Autowired
     private ReportingStructureService reportingStructureService;
 
-    @PostMapping("/ReportingStructure")
+    @PostMapping("/ReportingStructure/{id}")
     public ReportingStructure create(@RequestBody ReportingStructure rs) {
         LOG.debug("Received employee create request for [{}]", rs);
 
         return reportingStructureService.create(rs);
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/ReportingStructure/{id}")
     public ReportingStructure read(@PathVariable String id) {
-        LOG.debug("Received employee create request for id [{}]", id);
+        LOG.debug("Received employee read request for id [{}]", id);
 
         return reportingStructureService.read(id);
     }
 
-    @PutMapping("/employee/{id}")
-    public ReportingStructure update(@PathVariable String id, @RequestBody ReportingStructure rs) {
-        LOG.debug("Received employee create request for id [{}] and employee [{}]", id, rs);
-
-        rs.setRsId(id);
-        return reportingStructureService.update(rs);
-    }
 }
