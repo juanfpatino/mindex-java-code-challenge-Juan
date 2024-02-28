@@ -8,6 +8,7 @@ public class ReportingStructure {
 
     private Employee employee;
     private Integer numberOfReports;
+    private String rsId;
 
     /**
      * Constructor
@@ -35,6 +36,14 @@ public class ReportingStructure {
 
     public int getNumberOfReports(Employee employee) {
         return numberOfReports;
+    }
+
+    public String getRsId() {
+        return rsId;
+    }
+
+    public void setRsId(String rsId) {
+        this.rsId = rsId;
     }
 
 
