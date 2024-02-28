@@ -37,7 +37,7 @@ public class EmployeeController {
         return employeeService.update(employee);
     }
 
-    @PutMapping("/employee/getReportingStructure/{employeeId}")
+    @GetMapping("/employee/getReportingStructure/{employeeId}")
     public ReportingStructure getReportingStructure(@PathVariable String employeeId) {
 
         return employeeService.getReportingStructure(employeeId);
