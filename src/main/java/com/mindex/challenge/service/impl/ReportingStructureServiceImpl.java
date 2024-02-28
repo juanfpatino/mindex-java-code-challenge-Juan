@@ -46,6 +46,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
         LOG.debug("Setting ReportingStructure with Employee [{}]", id);
         ReportingStructure rs = reportingStructureRepository.findReportingStructureById(id);
         rs.setEmployee(employee);
+        rs.getNumberOfReports(); // update number of reports
         return reportingStructureRepository.save(rs);
     }
 

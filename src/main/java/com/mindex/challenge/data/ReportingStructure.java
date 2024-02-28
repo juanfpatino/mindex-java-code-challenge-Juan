@@ -28,24 +28,24 @@ public class ReportingStructure {
 
     // DFS to count the number of reports
     public int getNumberOfReports() {
-        if(numberOfReports == null){
-            numberOfReports = getNumberOfReports(this.employee, 0);
-        }
+
+        numberOfReports = getNumberOfReports(this.employee);
         return numberOfReports;
+
     }
 
-    public int getNumberOfReports(Employee employee, int reports) {
+    public int getNumberOfReports(Employee employee) {
 
-        if(employee.getDirectReports() == null)
-            return reports;
+        if(employee == null || employee.getDirectReports() == null)
+            return 0;
 
-        int thisEmployee = employee.getDirectReports().size(); // get this employee's
-
+        int directReports = employee.getDirectReports().size(); // get this employee's
+        int subReports = 0;
         for(Employee e : employee.getDirectReports()){
-            reports += getNumberOfReports(e, reports);
+            subReports += getNumberOfReports(e);
         }
 
-        return reports + thisEmployee;
+        return subReports + directReports;
 
     }
 
