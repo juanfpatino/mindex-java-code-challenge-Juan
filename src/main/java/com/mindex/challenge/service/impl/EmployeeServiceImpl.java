@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -60,13 +63,38 @@ public class EmployeeServiceImpl implements EmployeeService {
         ReportingStructure rs = new ReportingStructure();
 
         Employee employee = employeeRepository.findByEmployeeId(employeeId);
-
         if (employee == null) {
             throw new RuntimeException("Invalid employee: " + employeeId);
         }
+        finishSettingUpDR(employee);
 
         rs.setEmployee(employee);
         rs.getNumberOfReports(); // update number of reports
         return rs;
     }
+
+    /**
+     * Given the database is complete, this method will finish setting up the direct reports of an employee given its id
+     * @param employee Employee
+     */
+    private void finishSettingUpDR(Employee employee){
+
+        if(employee.getDirectReports() == null)
+            return;
+
+        List<Employee> completedEmployees = new ArrayList<Employee>();
+
+        for(Employee e : employee.getDirectReports()){
+            Employee subEmployee = employeeRepository.findByEmployeeId(e.getEmployeeId());
+            if (subEmployee == null) {
+                throw new RuntimeException("Invalid reporter to employee " + employee.getEmployeeId() + ": " + e.getEmployeeId());
+            }
+            completedEmployees.add(subEmployee);
+            finishSettingUpDR(e);
+        }
+
+        employee.setDirectReports(completedEmployees);
+
+    }
+
 }

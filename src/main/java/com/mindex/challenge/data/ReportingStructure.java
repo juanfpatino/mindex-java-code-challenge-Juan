@@ -1,5 +1,8 @@
 package com.mindex.challenge.data;
 
+import com.mindex.challenge.service.EmployeeService;
+import com.mindex.challenge.service.impl.EmployeeServiceImpl;
+
 /**
  * Represents the reporting structure of an employee.
  * author: Juan Francisco Patino
