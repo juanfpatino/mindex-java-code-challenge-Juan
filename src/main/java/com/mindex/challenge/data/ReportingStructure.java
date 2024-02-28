@@ -36,15 +36,16 @@ public class ReportingStructure {
 
     public int getNumberOfReports(Employee employee, int reports) {
 
-        if(employee.getDirectReports().isEmpty()){ // base case - no reports left
+        if(employee.getDirectReports() == null)
             return reports;
-        }
-        //otherwise
+
+        int thisEmployee = employee.getDirectReports().size(); // get this employee's
+
         for(Employee e : employee.getDirectReports()){
             reports += getNumberOfReports(e, reports);
         }
 
-        return reports;
+        return reports + thisEmployee;
 
     }
 
