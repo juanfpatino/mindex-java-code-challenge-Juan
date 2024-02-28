@@ -19,14 +19,14 @@ public class ReportingStructureController {
     public ReportingStructure create(@RequestBody ReportingStructure rs) {
         LOG.debug("Received employee create request for [{}]", rs);
 
-        return ReportingStructureService.create(rs);
+        return reportingStructureService.create(rs);
     }
 
     @GetMapping("/employee/{id}")
     public ReportingStructure read(@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);
 
-        return ReportingStructureService.read(id);
+        return reportingStructureService.read(id);
     }
 
     @PutMapping("/employee/{id}")
@@ -34,6 +34,6 @@ public class ReportingStructureController {
         LOG.debug("Received employee create request for id [{}] and employee [{}]", id, rs);
 
         rs.setRsId(id);
-        return ReportingStructureService.update(rs);
+        return reportingStructureService.update(rs);
     }
 }
