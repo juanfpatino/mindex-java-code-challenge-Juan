@@ -1,6 +1,7 @@
 package com.mindex.challenge.service.impl;
 
 import com.mindex.challenge.dao.ReportingStructureRepository;
+import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.ReportingStructureService;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
 
     @Override
     public ReportingStructure create(ReportingStructure reportingStructure) {
-        LOG.debug("Creating employee [{}]", reportingStructure);
+        LOG.debug("Creating ReportingStructure [{}]", reportingStructure);
 
         reportingStructure.setId(UUID.randomUUID().toString());
         reportingStructureRepository.insert(reportingStructure);
@@ -29,7 +30,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
 
     @Override
     public ReportingStructure read(String id) {
-        LOG.debug("Creating ReportingStructure with id [{}]", id);
+        LOG.debug("Reading ReportingStructure with id [{}]", id);
 
         ReportingStructure rs = reportingStructureRepository.findReportingStructureById(id);
 
@@ -40,5 +41,12 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
         return rs;
     }
 
+    @Override
+    public ReportingStructure update(String id, Employee employee) {
+        LOG.debug("Setting ReportingStructure with Employee [{}]", id);
+        ReportingStructure rs = reportingStructureRepository.findReportingStructureById(id);
+        rs.setEmployee(employee);
+        return reportingStructureRepository.save(rs);
+    }
 
 }
