@@ -17,7 +17,7 @@ Thank you for providing me with this coding challenge! I wanted to provide some 
   "type":"Compensation",
   "properties": {
     "employee": {
-      "type": "employee"
+      "type": "Employee"
     },
     "salary": {
       "type": "int"
