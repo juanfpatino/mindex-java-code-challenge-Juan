@@ -1,6 +1,8 @@
 package com.mindex.challenge.service.impl;
 
+import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.dao.EmployeeRepository;
+import com.mindex.challenge.data.Compensation;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
@@ -20,6 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private CompensationRepository compensationRepository;
 
     @Override
     public Employee create(Employee employee) {
@@ -58,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public ReportingStructure getReportingStructure(String employeeId) {
-        LOG.debug("Setting ReportingStructure with Employee [{}]", employeeId);
+        LOG.debug("Getting ReportingStructure with Employee [{}]", employeeId);
 
         ReportingStructure rs = new ReportingStructure();
 
@@ -71,6 +75,42 @@ public class EmployeeServiceImpl implements EmployeeService {
         rs.setEmployee(employee);
         rs.getNumberOfReports(); // update number of reports
         return rs;
+    }
+
+    /**
+     * This method is used to create a compensation object
+     * @param compensation Compensation object
+     * @return
+     */
+    @Override
+    public Compensation create(Compensation compensation) {
+
+        if(compensation.getEmployee() == null)
+            LOG.warn("Creating compensation for null employee");
+        else
+            LOG.debug("Creating employee compensation for employee [{}]", compensation.getEmployee());
+
+        compensationRepository.insert(compensation);
+
+        return compensation;
+    }
+
+    /**
+     * This method is used to get the compensation of an employee given its id
+     * @param id ID of the employee
+     * @return Compensation object
+     */
+    @Override
+    public Compensation getCompensation(String id) {
+        LOG.debug("Getting compensation for employee with id [{}]", id);
+
+        Employee employee = employeeRepository.findByEmployeeId(id);
+
+        if (employee == null) {
+            throw new RuntimeException("Invalid employeeId: " + id);
+        }
+
+        return compensationRepository.findByEmployee(employee);
     }
 
     /**

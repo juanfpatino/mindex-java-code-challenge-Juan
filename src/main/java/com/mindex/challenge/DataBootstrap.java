@@ -1,6 +1,7 @@
 package com.mindex.challenge;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
@@ -17,7 +18,6 @@ public class DataBootstrap {
 
     @Autowired
     private EmployeeRepository employeeRepository;
-
     @Autowired
     private ObjectMapper objectMapper;
 

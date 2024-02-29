@@ -1,0 +1,14 @@
+package com.mindex.challenge.dao;
+
+import com.mindex.challenge.data.Compensation;
+import com.mindex.challenge.data.Employee;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Allows the Compensation objects to be stored and retrieved from the database.
+ */
+@Repository
+public interface CompensationRepository extends MongoRepository<Compensation, String> {
+    Compensation findByEmployee(Employee employeeId);
+}
