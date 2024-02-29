@@ -1,8 +1,5 @@
 package com.mindex.challenge.data;
 
-import com.mindex.challenge.service.EmployeeService;
-import com.mindex.challenge.service.impl.EmployeeServiceImpl;
-
 /**
  * Represents the reporting structure of an employee.
  * author: Juan Francisco Patino
@@ -38,17 +35,18 @@ public class ReportingStructure {
 
     /**
      * Recursive method to count the number of reports
+     *
      * @param employee Employee
      * @return number of reports
      */
     public int getNumberOfReports(Employee employee) {
 
-        if(employee == null || employee.getDirectReports() == null)
+        if (employee == null || employee.getDirectReports() == null)
             return 0;
 
         int directReports = employee.getDirectReports().size(); // get this employee's
         int subReports = 0;
-        for(Employee e : employee.getDirectReports()){
+        for (Employee e : employee.getDirectReports()) {
             subReports += getNumberOfReports(e);
         }
 

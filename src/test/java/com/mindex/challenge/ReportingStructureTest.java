@@ -1,4 +1,5 @@
 package com.mindex.challenge;
+
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import org.junit.BeforeClass;
@@ -13,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Test class for Reporting Structure Class
+ *
  * @Author Juan Francisco Patino
  */
 
@@ -43,8 +45,8 @@ public class ReportingStructureTest {
         pete.setLastName("Best");
         george.setFirstName("George");
         george.setLastName("Harrison");
-        ringo.setDirectReports(Arrays.asList(new Employee[]{pete, george}));
-        john.setDirectReports(Arrays.asList(new Employee[]{paul, ringo}));
+        ringo.setDirectReports(Arrays.asList(pete, george));
+        john.setDirectReports(Arrays.asList(paul, ringo));
         r.setEmployee(john);
     }
 
@@ -52,18 +54,18 @@ public class ReportingStructureTest {
      * Test to check if the number of reports is correct in the README.md example
      */
     @Test
-    public void johnLennonTest(){
+    public void johnLennonTest() {
         assertEquals(4, r.getNumberOfReports());
     }
 
     /**
      * Test to check if the number of reports is correct in the README.md example
-        after adding two more reports to John Lennon
+     * after adding two more reports to John Lennon
      */
     @Test
-    public void addTwoToJohnLennon(){
-        george.setDirectReports(Arrays.asList(new Employee[]{new Employee()}));
-        paul.setDirectReports(Arrays.asList(new Employee[]{new Employee()}));
+    public void addTwoToJohnLennon() {
+        george.setDirectReports(Arrays.asList(new Employee()));
+        paul.setDirectReports(Arrays.asList(new Employee()));
         assertEquals(6, r.getNumberOfReports());
     }
 
@@ -71,7 +73,7 @@ public class ReportingStructureTest {
      * Test a ReportingStructure with one employee with no reports
      */
     @Test
-    public void testZero(){
+    public void testZero() {
         Employee e = new Employee();
         r1.setEmployee(e);
         assertEquals(0, r1.getNumberOfReports());
@@ -81,9 +83,9 @@ public class ReportingStructureTest {
      * Test a ReportingStructure with one employee with no reports
      */
     @Test
-    public void testOne(){
+    public void testOne() {
         Employee e = new Employee();
-        e.setDirectReports(Arrays.asList(new Employee[]{new Employee()}));
+        e.setDirectReports(Arrays.asList(new Employee()));
         r2.setEmployee(e);
         assertEquals(1, r2.getNumberOfReports());
     }
@@ -92,7 +94,7 @@ public class ReportingStructureTest {
      * Test a ReportingStructure with no employee
      */
     @Test
-    public void testEmpty(){
+    public void testEmpty() {
         assertEquals(0, r3.getNumberOfReports());
     }
 

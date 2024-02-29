@@ -57,6 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * This method is used to get the reporting structure of an employee
+     *
      * @param employeeId ID of the employee
      * @return ReportingStructure object
      */
@@ -79,13 +80,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * This method is used to create a compensation object
+     *
      * @param compensation Compensation object
      * @return
      */
     @Override
     public Compensation create(Compensation compensation) {
 
-        if(compensation.getEmployee() == null)
+        if (compensation.getEmployee() == null)
             LOG.warn("Creating compensation for null employee");
         else
             LOG.debug("Creating employee compensation for employee [{}]", compensation.getEmployee());
@@ -97,6 +99,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * This method is used to get the compensation of an employee given its id
+     *
      * @param id ID of the employee
      * @return Compensation object
      */
@@ -115,16 +118,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * Given the database is complete, this method will finish setting up the direct reports of an employee given its id
+     *
      * @param employee Employee
      */
-    private void finishSettingUpDR(Employee employee){
+    private void finishSettingUpDR(Employee employee) {
 
-        if(employee.getDirectReports() == null)
+        if (employee.getDirectReports() == null)
             return;
 
         List<Employee> completedEmployees = new ArrayList<Employee>();
 
-        for(Employee e : employee.getDirectReports()){
+        for (Employee e : employee.getDirectReports()) {
             Employee subEmployee = employeeRepository.findByEmployeeId(e.getEmployeeId());
             if (subEmployee == null) {
                 throw new RuntimeException("Invalid reporter to employee " + employee.getEmployeeId() + ": " + e.getEmployeeId());
