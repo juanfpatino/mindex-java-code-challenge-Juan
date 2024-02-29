@@ -1,4 +1,4 @@
-package com.mindex.challenge.service.impl;
+package com.mindex.challenge;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import org.junit.BeforeClass;
