@@ -87,6 +87,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Compensation create(Compensation compensation) {
 
+        if(compensationRepository.findByEmployee(compensation.getEmployee()) != null)
+            throw new RuntimeException("Compensation already exists for employee: " + compensation.getEmployee().getEmployeeId());
+
         if (compensation.getEmployee() == null)
             LOG.warn("Creating compensation for null employee");
         else

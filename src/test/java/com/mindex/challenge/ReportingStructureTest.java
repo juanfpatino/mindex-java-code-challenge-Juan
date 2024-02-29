@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
@@ -64,8 +65,8 @@ public class ReportingStructureTest {
      */
     @Test
     public void addTwoToJohnLennon() {
-        george.setDirectReports(Arrays.asList(new Employee()));
-        paul.setDirectReports(Arrays.asList(new Employee()));
+        george.setDirectReports(Collections.singletonList(new Employee()));
+        paul.setDirectReports(Collections.singletonList(new Employee()));
         assertEquals(6, r.getNumberOfReports());
     }
 
@@ -85,7 +86,7 @@ public class ReportingStructureTest {
     @Test
     public void testOne() {
         Employee e = new Employee();
-        e.setDirectReports(Arrays.asList(new Employee()));
+        e.setDirectReports(Collections.singletonList(new Employee()));
         r2.setEmployee(e);
         assertEquals(1, r2.getNumberOfReports());
     }
