@@ -10,7 +10,7 @@ Thank you for providing me with this coding challenge! I wanted to provide some 
 ### Task 2:
 * The endpoints for this task are POST and GET endpoints, respectively:
   * `localhost:8080/employee/compensation`
-  * `localhost:8080/employee/compensation{id}`
+  * `localhost:8080/employee/compensation/{id}`
 * A compensation has a JSON schema of 
 ```json
 {
